@@ -1,0 +1,10 @@
+1,create an input box
+2,create an button
+3,get input value from the box
+   a,store in a array
+   b,store in a local storage
+4,display the input as list with close button
+5,if closed icon is pressed the element must be deleted in the array as well as local storage.
+6.if the page is reloaded the elements stored in local storage is displayed as the list.
+7.if we delete the list item ,it will delete in the local storage item and array element.
+8.again reloading the page remaing elements need to be displayed.
