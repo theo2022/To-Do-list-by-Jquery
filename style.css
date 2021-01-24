@@ -41,7 +41,8 @@ body{
 ul{
   margin: 0%;
   padding: 0%;
-  overflow: auto;
+  list-style: none;
+  
 }
 ul li {
   background-color: white;
@@ -53,11 +54,11 @@ ul li {
   position: relative;
 }
 ul li:hover {
-  background-color: black;
+  background-color:gray;
   
 }
 ul li:nth-child(odd){
-  background-color: coral;
+  background-color:#f6f6f6;
 }
 input[type="text"]{
   padding: 10px 20px;
@@ -113,4 +114,23 @@ h2 {
   top:0px;
   left: 40%;
   font-size: 100px;
+}
+.icon{
+  width:20px;
+  position: absolute ;
+  top: 0px;
+  right: 20px;
+  margin-right:25px;
+  
+}
+.container2{
+  height: 300px;
+  overflow: auto;
+}
+.deleteicon{
+  position: absolute;
+  top:0px;
+  right: 0px;
+  width:20px;
+  margin-right: 10px;
 }

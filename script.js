@@ -1,5 +1,6 @@
 // Create common arr
 let TODOARR = [];
+//to create an todo item
 const inputval= document.getElementById("myInput");
 inputval.addEventListener("keyup",function(event){
   
@@ -7,7 +8,7 @@ inputval.addEventListener("keyup",function(event){
     document.getElementById("activate").click();
   }
 })
-
+//retrive from the local storage
 function init() {
   const todos = localStorage.getItem('todo');
   
@@ -31,7 +32,7 @@ function addNewElement() {
     ListElement();
   }
 }
-
+//to remove an element
 function removeElement(position) {
   const removed = TODOARR.splice(position, 1)
   localStorage.setItem("todo", JSON.stringify(TODOARR));
@@ -46,34 +47,54 @@ function ListElement() {
   for (var i = 0; i < TODOARR.length; i++) {
     const Text = TODOARR[i].text;
     const LI = document.createElement("li");
-    LI.setAttribute('data-id', TODOARR[i].id);
-    const checkbox = document.createElement("input");
-    checkbox.type = "radio";
-    checkbox.id = i;
-    checkbox.addEventListener("change", function () {
-      
-     
+    //delete the list
+    const deleteicon= document.createElement("img");
+    deleteicon.setAttribute("src","trash.svg");
+    deleteicon.className="deleteicon";
+    deleteicon.id = i;
+    deleteicon.addEventListener("click", function () {
       removeElement(this.id)
     });
-    LI.addEventListener("dblclick",function(){
-      console.log(this.getAttribute('data-id'))
-      const changeText= document.createElement("input");
-      LI.innerHTML="";
-      changeText.type="text";
-      LI.appendChild(changeText);
-      
+    
+    LI.appendChild(deleteicon);
+    //to check whether the list is completed
+    const checkbox = document.createElement("input");
+    checkbox.type = "radio";
+    
+    checkbox.addEventListener("change",function(){
+      checkbox.classList.toggle("checked");
     })
-    LI.append(checkbox);
+    //to eidt the todo item
+    const editicon= document.createElement("img");
+    
+    editicon.setAttribute("src","edit.svg");
+    
+
+    editicon.className="icon";
+  
+    editicon.setAttribute('data-id', TODOARR[i].id);
+  
+    editicon.addEventListener("click",function(){
+      const id= Number(this.getAttribute('data-id'));
+      const obj = TODOARR.find(function(element){
+        return element.id === id
+      }) || null;
+      const changeText= document.createElement("input");
+      
+      changeText.type="text";
+      changeText.value = obj ? obj.text : ''
+      console.log(obj)
+      
+      
+      LI.innerHTML="";
+     })
+     LI.appendChild(editicon);
+    
+     LI.append(checkbox);
+    
     const todoItem = document.createTextNode(Text);
     LI.append(todoItem);
     document.getElementById("myUL").append(LI);
   }
-}
-function changeText(){
-  const li= document.getElementsByTagName("LI");
-  
-  changeText.className='save';
-  LI.appendChild(changeText);
-  ListElement();
 }
 
